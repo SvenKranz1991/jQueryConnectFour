@@ -1,0 +1,47 @@
+/* GENERAL */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* COLOR FOR DIVS TEMPLATE AS CLASSES */
+
+.green {
+    background-color: green;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.red {
+    background-color: tomato;
+}
+
+.blue {
+    background-color: azure;
+}
+
+.pink {
+    background-color: pink;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+body {
+    position: relative;
+}
+
+.box {
+    background-color: yellow;
+
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 500px;
+    right: auto;
+}
