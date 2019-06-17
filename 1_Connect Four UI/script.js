@@ -7,6 +7,7 @@ console.log("sanity check", $);
     var currentPlayer = "player1";
     var slot = $(".slot");
     var column = $(".columns");
+    var curplay = $("#curplay");
 
     function switchPlayers() {
         if (currentPlayer == "player1") {
@@ -18,15 +19,25 @@ console.log("sanity check", $);
 
     function switchColor() {
         if (currentPlayer == "player1") {
-            $("#cursor").css("background-color", "green");
+            $("#cursor").css("background-color", "#d9c791");
+            $("#cursor").css("background-image", "url(assets/white.png)");
         } else {
-            $("#cursor").css("background-color", "red");
+            $("#cursor").css("background-color", "black");
+            $("#cursor").css("background-image", "url(assets/black.png)");
+        }
+    }
+
+    function changePlayerDisplay() {
+        if (currentPlayer == "player1") {
+            curplay.text("Current Player : Player 1");
+        } else {
+            curplay.text("Current Player : Player 2");
         }
     }
 
     // Mouse Pointer
     column.on("mousemove", function(e) {
-        // event.stopImmediatePropagation("click");
+        $("#cursor").css("visibility", "visible");
         $("#cursor").css({
             left: e.pageX - 50,
             top: e.pageY - 120
@@ -36,14 +47,6 @@ console.log("sanity check", $);
             cursor: "none"
         });
     });
-
-    //  Make Coin Dissapear on leave
-    //
-    // column.on("mouseleave", function(e) {
-    //     $("#cursor").css({
-    //         visibility: hidden
-    //     });
-    // });
 
     var myOriginalDiagonalWinArray = [
         [2, 9, 16, 23],
@@ -110,32 +113,22 @@ console.log("sanity check", $);
         if (checkForVictory(slotsInColumn)) {
             // vertical
             // do victory dance
-            setTimeout(function() {
-                prompt(currentPlayer + " - winner");
-                clearBoard();
-            }, 500);
+            modalPopup();
             return;
         } else if (checkForVictory($(".row" + i))) {
             // horizontal
             // do victory dance
-            setTimeout(function() {
-                prompt(currentPlayer + " - winner");
-                clearBoard();
-            }, 500);
+            modalPopup();
             return;
         } else if (checkDiag(myOriginalDiagonalWinArray)) {
             // diagonal;
-            setTimeout(function() {
-                prompt(currentPlayer + " - winner");
-                clearBoard();
-            }, 500);
+            modalPopup();
             return;
         } else {
             switchPlayers();
             switchColor();
+            changePlayerDisplay();
         }
-
-        // switchPlayers();
 
         function checkDiag(arr) {
             var count = 0;
@@ -155,44 +148,54 @@ console.log("sanity check", $);
 
         //Clear Board
         function clearBoard() {
-            console.log("gesundheit");
             for (var i = 0; i < slot.length; i++) {
                 slot.eq(i).removeClass("player1");
                 slot.eq(i).removeClass("player2");
             }
         }
-    });
 
-    // Modal section
+        // Modal section
+
+        function modalPopup() {
+            var modal = $(".winner-modal");
+            var newgame = $(".newgame");
+            var close = $(".close");
+            var winpiece = $(".winnerpiece");
+            var wintext = $(".winnertext");
+
+            $("#cursor").off("mousemove");
+            $("#cursor").css("visibility", "hidden");
+
+            if (currentPlayer == "player1") {
+                wintext.text("Winner - Player 1");
+                // winpiece.css("background-color", "#d9c791");
+                winpiece.css("background-image", "url(assets/white.png)");
+            } else {
+                wintext.text("Winner - Player 2");
+                // winpiece.css("background-color", "black");
+                winpiece.css("background-image", "url(assets/black.png)");
+            }
+
+            modal.css("visibility", "visible");
+            // $(".modal-content").css("visibility", "visible");
+            $(".modal-content").addClass("on");
+            $("body").addClass("stop-scrolling");
+
+            newgame.on("click", function() {
+                clearBoard();
+                $("body").removeClass("stop-scrolling");
+                $(".modal-content").removeClass("on");
+                // modal.css("display", "none");
+            });
+
+            close.on("click", function() {
+                clearBoard();
+                $("body").removeClass("stop-scrolling");
+                $(".modal-content").removeClass("on");
+                // modal.css("display", "none");
+            });
+        }
+    });
 
     //END
 })();
-
-//______________________
-// Modal Section
-
-// function modalPopup() {
-//     var modal = $(".modal");
-//     var modalbutton = $(".btnclose");
-//
-//     modal.css("display", "flex");
-//     $("body").addClass("stop-scrolling");
-//     // modal.addClass("on");
-//     cross.on("click", function() {
-//         console.log("click");
-//         modal.css("display", "none");
-//         $("body").removeClass("stop-scrolling");
-//     });
-//
-//     modalbutton.on("click", function() {
-//         console.log("click");
-//         modal.css("display", "none");
-//         $("body").removeClass("stop-scrolling");
-//     });
-// }
-//
-// $(document).ready(function() {
-//     setTimeout(function() {
-//         modalPopup();
-//     }, 1000);
-// });

@@ -5,15 +5,18 @@
         <meta charset="utf-8" />
         <title>Connect Four</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
-        <link
-            href="https://fonts.googleapis.com/css?family=Crimson+Text&display=swap"
-            rel="stylesheet"
-        />
+        <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     </head>
+
+    <div class="head">
+        <header>Connect Four</header>
+        <hr>
+
+
     <body>
 
                             <!-- Game Section -->
-        <h1>Connect Four</h1>
+        <h1 id="curplay">Current Player : Player 1</h1>
         <div class="board">
                 <div class="columns">
                     <div class="slot row row0">
@@ -37,7 +40,7 @@
                 </div>
                 <div class="columns">
                     <div class="slot row row0">
-                    <div class="hole"></div>
+                    <div class="hole"><div class="cicrle"></div></div>
                     </div>
                     <div class="slot row row1">
                     <div class="hole"></div>
@@ -155,42 +158,34 @@
                     <div class="hole"></div>
                     </div>
                 </div>
+
+
+        </div>
+
+        <!-- Modal Section -->
+
+        <div class="winner-modal">
+            <div class='modal-content'>
+                <h2 class="winnertext">Winner</h2>
+                <div class="winnerpiece"></div>
+
+                <div class="wrapper-icons">
+                <div class="chicken"></div>
+                <div class="winningdance"></div>
+                <!-- <div class="terrycrews"></div> -->
+                </div>
+
+                <div class="wrapper-buttons">
+                <div class="newgame" id='newgame'> New Game </div>
+                <div class="close" id='close'> Close </div>
+                </div>
+            </div>
         </div>
 
 
-<!-- Modal Section -->
 
-        <!-- <div class='modal'>
-            <div class='modal-content'>
-                    <div type='button' class='cross'>+</div>
-                    <h3>Welcome to Berlin and the Future</h3>
-                    <p>Diese Website verwendet Cookies – nähere Informationen dazu und zIhren Rechten als Benutzer finden Sie in unserer Datenschutzerklärung aEnde der Seite. Klicken Sie auf „Arm, aber sexy“, um  Alt-BürgermeisteWowereit Respekt zu erweisen.</p>
-                            <div class="btnclose" id='closingmodal'>   Arm, aber sexy </div>
-                    </div>
-            </div>
-
-
-                RedWins
-            <div class="redwins"><h1>
-            </h1></div>
-
-                 BlueWins
-            <div class="Bluewins"><h1>
-
-                </h1></div>
-
-
-Give me Memes Section
-
-<img src="https://bubble-medicine.glitch.me/gif?tag=kitty" alt="kitty"/>
-
-
-Game Piece Hover on Column -->
-
-
-
-                    <!-- Mouse Pointer -->
-                    <div id="cursor"></div>
+        <!-- Mouse Pointer - Game Piece Hover on Column -->
+        <div id="cursor"></div>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
