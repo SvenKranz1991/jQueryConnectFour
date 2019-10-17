@@ -51,7 +51,7 @@ console.log("sanity check", $);
         });
     });
 
-    var myOriginalDiagonalWinArray = [
+    var diagonalWin = [
         [2, 9, 16, 23],
         [1, 8, 15, 22],
         [8, 15, 22, 29],
@@ -127,7 +127,7 @@ console.log("sanity check", $);
             // do victory dance
             modalPopup();
             return;
-        } else if (checkDiag(myOriginalDiagonalWinArray)) {
+        } else if (checkDiag(diagonalWin)) {
             // diagonal;
             modalPopup();
             return;
